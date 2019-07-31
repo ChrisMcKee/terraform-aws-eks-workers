@@ -141,7 +141,7 @@ data "aws_ami" "eks_worker" {
 }
 
 module "autoscale_group" {
-  source = "git::https://github.com/cloudposse/terraform-aws-ec2-autoscale-group.git?ref=tags/0.1.3"
+  source = "git::https://github.com/ChrisMcKee/terraform-aws-ec2-autoscale-group.git?ref=master"
 
   enabled    = "${var.enabled}"
   namespace  = "${var.namespace}"
@@ -204,6 +204,11 @@ module "autoscale_group" {
   cpu_utilization_low_period_seconds      = "${var.cpu_utilization_low_period_seconds}"
   cpu_utilization_low_statistic           = "${var.cpu_utilization_low_statistic}"
   cpu_utilization_low_threshold_percent   = "${var.cpu_utilization_low_threshold_percent}"
+
+  ##
+  mixed_type = "${var.mixed_type}"
+  autoscaling_configs = "${var.autoscaling_configs}"
+  autoscaling_instances = "${var.autoscaling_instances}"
 }
 
 data "template_file" "userdata" {
