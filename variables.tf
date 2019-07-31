@@ -397,6 +397,13 @@ variable "aws_iam_instance_profile_name" {
   description = "The name of the existing instance profile that will be used in autoscaling group for EKS workers. If empty will create a new instance profile."
 }
 
+variable "workers_role_policy_arns_count" {
+  type        = "string"
+  default     = "0"
+  description = "Count of policy ARNs that will be attached to the workers default role on creation. Needed to prevent Terraform error `count can't be computed`"
+}
+
+
 
 variable "mixed_type" {
   type        = "string"
