@@ -75,6 +75,10 @@ variable "allowed_security_groups" {
   description = "List of Security Group IDs to be allowed to connect to the worker nodes"
 }
 
+variable "allowed_security_groups_count" {
+  default = 0
+}
+
 variable "allowed_cidr_blocks" {
   type        = "list"
   default     = []
