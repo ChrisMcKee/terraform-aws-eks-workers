@@ -266,7 +266,7 @@ variable "wait_for_capacity_timeout" {
 
 variable "min_elb_capacity" {
   description = "Setting this causes Terraform to wait for this number of instances to show up healthy in the ELB only on creation. Updates will not wait on ELB instance number changes"
-  default     = 2
+  default     = 0
 }
 
 variable "wait_for_elb_capacity" {
@@ -397,12 +397,41 @@ variable "aws_iam_instance_profile_name" {
   description = "The name of the existing instance profile that will be used in autoscaling group for EKS workers. If empty will create a new instance profile."
 }
 
+variable "workers_security_group_id" {
+  type        = "string"
+  default     = ""
+  description = "The name of the existing security group that will be used in autoscaling group for EKS workers. If empty, a new security group will be created"
+}
+
+variable "use_existing_security_group" {
+  type        = "string"
+  description = "If set to `true`, will use variable `workers_security_group_id` to run EKS workers using an existing security group that was created outside of this module, workaround for errors like `count cannot be computed`"
+  default     = "false"
+}
+
+variable "additional_security_group_ids" {
+  type        = "list"
+  default     = []
+  description = "Additional list of security groups that will be attached to the autoscaling group"
+}
+
+variable "use_existing_aws_iam_instance_profile" {
+  type        = "string"
+  description = "If set to `true`, will use variable `aws_iam_instance_profile_name` to run EKS workers using an existing AWS instance profile that was created outside of this module, workaround for error like `count cannot be computed`"
+  default     = "false"
+}
+
+variable "workers_role_policy_arns" {
+  type        = "list"
+  default     = []
+  description = "List of policy ARNs that will be attached to the workers default role on creation"
+}
+
 variable "workers_role_policy_arns_count" {
   type        = "string"
   default     = "0"
   description = "Count of policy ARNs that will be attached to the workers default role on creation. Needed to prevent Terraform error `count can't be computed`"
 }
-
 
 
 variable "mixed_type" {
