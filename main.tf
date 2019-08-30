@@ -209,6 +209,8 @@ module "autoscale_group" {
   mixed_type = "${var.mixed_type}"
   autoscaling_configs = "${var.autoscaling_configs}"
   autoscaling_instances = "${var.autoscaling_instances}"
+
+  launch_template_version = "$Latest"
 }
 
 data "template_file" "userdata" {
