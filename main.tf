@@ -141,7 +141,7 @@ data "aws_ami" "eks_worker" {
 }
 
 module "autoscale_group" {
-  source = "git::https://github.com/ChrisMcKee/terraform-aws-ec2-autoscale-group.git?ref=master"
+  source = "git::https://github.com/ChrisMcKee/terraform-aws-ec2-autoscale-group.git?ref=0.11/master"
 
   enabled    = "${var.enabled}"
   namespace  = "${var.namespace}"
